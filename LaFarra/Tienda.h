@@ -37,7 +37,10 @@ public:		  //Metodos
 	void mostrarFacturas();
 	void vender();
 	void cantidadProucto();
-	// Gets and sets
 	string getNombre();
+	void cantProductosTipo();
+	void verProductosDisp();
+	void IVAaDIAN();
+
 };
-#endif /* !TIENDA_H */
+#endif 

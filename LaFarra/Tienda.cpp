@@ -187,7 +187,7 @@ void Tienda::cantidadProucto(){
 		 pProducto != inventario.end(); pProducto++)
 	{
 		Producto valor = pProducto->second; // Se obtiene el valor asociado al mapa
-		if (valor.getCantUnidades() <= cantidadMinima)
+		if (valor.getCantUnidades() <= cantidadMinima && valor.getCantUnidades() != 0)
 		{
 			valor.mostrarProducto();
 			cout << "Quedan: ";
@@ -195,4 +195,49 @@ void Tienda::cantidadProucto(){
 			cout << "\n";
 		}
 	}
+}
+
+void Tienda::cantProductosTipo(){
+	int cantLicor  = 0,cantSnak = 0; 
+	for(vector<Factura>::iterator pFactura = facturas.begin(); pFactura != facturas.end(); pFactura++)
+	{
+		for(vector<DetalleFactura>::iterator pDetalleFactura = pFactura->getDetalles().begin(); pDetalleFactura != pFactura->getDetalles().end(); pFactura++)
+		{
+			if(pDetalleFactura->getProducto().getTipoProducto().getNombre() == "Snack")
+			{
+				cantSnak += pDetalleFactura->getCantUnidVend();
+			}
+			else
+			{
+				cantLicor += pDetalleFactura->getCantUnidVend();	
+			}
+		}
+	}
+
+	cout << "La cantidad de productos vendidos de tipo Licor son: " << cantLicor << "\n";
+	cout << "La cantidad de productos vendidos de tipo Snack son: " << cantSnak << "\n";
+
+	
+}
+
+void Tienda::verProductosDisp(){
+
+	for (map<int, Producto>::iterator pProducto = inventario.begin(); pProducto != inventario.end(); pProducto++)
+	{
+		Producto valor = pProducto->second;
+		if (valor.getCantUnidades() > 0 ){
+			cout << valor.getNombre() << "\n";
+		}
+	}
+}
+void Tienda::IVAaDIAN(){
+	float totalaPagaraDian = 0;
+	for(vector<Factura>::iterator pFactura = facturas.begin(); pFactura != facturas.end(); pFactura++)
+	{
+		for(vector<DetalleFactura>::iterator pDetalleFactura = pFactura->getDetalles().begin(); pDetalleFactura != pFactura->getDetalles().end(); pFactura++)
+		{
+			totalaPagaraDian += pDetalleFactura->getvalorTotalIVA();
+		}
+	}
+	cout << "El total a pagar a la DIAN es de: " << totalaPagaraDian << "\n"; 
 }

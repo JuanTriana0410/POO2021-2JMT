@@ -25,8 +25,20 @@ void View::mostrarMenuReportes()
         case 1:
             laFarra.cantidadProucto();
             break;
-        
+        case 2:
+            laFarra.cantProductosTipo();
+            break;
+        case 3:
+            cout << "No pude hacerlo :c\n";
+            break;
+        case 4:
+            laFarra.verProductosDisp();
+            break;
+        case 5:
+            laFarra.IVAaDIAN();
+            break;
         default:
+            cout << "Opcion invalida\n";
             break;
         }
     } while (opcion != 0);
