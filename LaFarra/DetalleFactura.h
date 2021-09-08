@@ -11,6 +11,7 @@ using std::cout;
 using std::endl;
 using std::string;
 
+//clase 
 class DetalleFactura
 {
 private: //Atributos
